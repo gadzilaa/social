@@ -27,7 +27,7 @@ export const Dialogs = (props) => {
     let dialogElement = props.state.dialogs.map(el => <DialogsItem name={el.name} id={el.id} />)
 
     let messageElement = props.state.messages.map(el => <Message message={el.message} />)
-
+ 
    
 
 
