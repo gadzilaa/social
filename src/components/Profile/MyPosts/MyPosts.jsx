@@ -15,9 +15,17 @@ export const MyPosts = (props) => {
 
     let addPost = () => {
         debugger;
-        let text =newPostElem.current.value
-        props.addPost(text)
-        newPostElem.current.value=''
+        // let text = newPostElem.current.value;
+        props.addPost();
+        // newPostElem.current.value='';
+        // props.updateNewPostText(' ');
+
+    }
+
+    let onChangeTextarea = () => {
+        let text = newPostElem.current.value;
+        props.updateNewPostText(text);
+
     }
 
 
@@ -25,11 +33,15 @@ export const MyPosts = (props) => {
         <div className={s.postsBlock}>
             <h3>My post</h3>
             <div>
-                <textarea ref={newPostElem}></textarea>
+                <textarea
+                    onChange={onChangeTextarea}
+                    ref={newPostElem}
+                    value={props.newPostText}
+                />
             </div>
             <button onClick={addPost}>Add</button>
             <div className={s.posts}>
-            {postElement}
+                {postElement}
             </div >
 
         </div>
