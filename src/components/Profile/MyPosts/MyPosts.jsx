@@ -14,17 +14,16 @@ export const MyPosts = (props) => {
     let newPostElem = React.createRef()
 
     let addPost = () => {
-        debugger;
-        // let text = newPostElem.current.value;
-        props.addPost();
-        // newPostElem.current.value='';
-        // props.updateNewPostText(' ');
+        // props.addPost();
+        props.dispatch({ type: 'ADD-POST' })
 
     }
 
     let onChangeTextarea = () => {
         let text = newPostElem.current.value;
-        props.updateNewPostText(text);
+        const action = { type: 'UPDATE-NEW-POST-TEXT', newText: text }
+        // props.updateNewPostText(text);
+        props.dispatch(action)
 
     }
 
