@@ -1,5 +1,5 @@
 import React from 'react'
-import { addPostActionCreator, updateNewPostTextActionCreater } from '../../../Redux/state'
+import { addPostActionCreator, updateNewPostTextActionCreater } from '../../../Redux/profile-reducer'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
 
