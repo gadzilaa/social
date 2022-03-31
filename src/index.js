@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import store from './Redux/redux-store';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from './StoreContext';
 
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App
-                state={state}
-                dispatch={store.dispatch.bind(store)}
-                store={store}
-            />
+            <Provider store={store}>
+                <App />
+            </Provider>
+
         </React.StrictMode>,
         document.getElementById('root')
     );

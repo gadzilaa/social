@@ -1,5 +1,6 @@
 import React from 'react'
 import { sendMessageCreater, updateNewMessageBodyCreater } from '../../Redux/dialogs-reducer'
+import { StoreContext } from '../../StoreContext';
 import { Dialogs } from './Dialogs';
 
 
@@ -9,26 +10,23 @@ import { Dialogs } from './Dialogs';
 
 export const DialogsContainer = (props) => {
 
-    let state = props.store.getState().dialogsPage;
+    return <StoreContext.Consumer>
+        {store => {
 
+            let state = store.getState().dialogsPage;
 
-    const onClickButtonHandler = () => {
-        props.store.dispatch(sendMessageCreater())
-        // props.dispatch(addDialogsActionCreator())
-    }
+            const onClickButtonHandler = () => {
+                store.dispatch(sendMessageCreater())
+            }
+            const onChangeTextAreaHandler = (body) => {
+                store.dispatch(updateNewMessageBodyCreater(body));
+            }
 
-    const onChangeTextAreaHandler = (body) => {
-        props.store.dispatch(updateNewMessageBodyCreater(body));
-
-
-        
-
-    }
-
-    return (
-       <Dialogs state={state} 
-       sendMessageCreater={onClickButtonHandler}
-       updateNewMessageBody= {onChangeTextAreaHandler}
-       />
-    )
+            return <Dialogs state={state}
+                sendMessageCreater={onClickButtonHandler}
+                updateNewMessageBody={onChangeTextAreaHandler}
+            />
+        }
+        }
+    </StoreContext.Consumer>
 }
