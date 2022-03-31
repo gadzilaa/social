@@ -1,5 +1,4 @@
 import React from 'react'
-import { addPostActionCreator, updateNewPostTextActionCreater } from '../../../Redux/profile-reducer'
 import s from './MyPosts.module.css'
 import { Post } from './Post/Post'
 
@@ -13,15 +12,15 @@ export const MyPosts = (props) => {
     let newPostElem = React.createRef()
 
     let addPost = () => {
-        // props.addPost();
-        props.dispatch(addPostActionCreator())
+        props.addPost();
+        // props.dispatch(addPostActionCreator())
     }
 
     let onChangeTextarea = () => {
         let text = newPostElem.current.value;
-        const action = updateNewPostTextActionCreater(text)
-        // props.updateNewPostText(text);
-        props.dispatch(action)
+        props.updateNewPostText(text);
+        // const action = updateNewPostTextActionCreater(text)
+        // props.dispatch(action)
 
     }
 
