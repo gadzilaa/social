@@ -11,9 +11,9 @@ import { Message } from './Message/Message'
 export const Dialogs = (props) => {
 let state =props.state
 
-    let dialogElement = state.dialogs.map(el => <DialogsItem name={el.name} id={el.id} />)
+    let dialogElement = state.dialogs.map(el => <DialogsItem key={el.id} name={el.name} id={el.id} />)
 
-    let messageElement = state.messages.map(el => <Message message={el.message} />)
+    let messageElement = state.messages.map(el => <Message key={el.id} message={el.message} />)
     let newMessageBody =  state.newMessageBody;
 
 
