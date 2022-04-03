@@ -22,8 +22,9 @@ export const profileReducer = (state = initialState, action) => {
             };
             return {
                 ...state,
+                newPostText: "",
                 posts: [...state.posts, newPost],
-                newPost: " ",
+                
             };
             }
 

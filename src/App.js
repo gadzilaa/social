@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { News } from "./components/News/News";
 import { Profile } from './components/Profile/Profile';
 import { Setting } from "./components/Setting/Setting";
+import { UsersContainer } from "./components/users/UsersContainer";
 
 function App(props) {
   return (
@@ -24,6 +25,7 @@ function App(props) {
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/setting" element={<Setting />} />
+            <Route path="/users" element={<UsersContainer />} />
 
           </Routes>
         </div>
