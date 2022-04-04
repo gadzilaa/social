@@ -1,17 +1,20 @@
 import React from 'react'
 import s from './users.module.css'
+import * as axios from 'axios'
+import userPhoto from '../../assets/images/user.png'
 
 export const Users = (props) => {
 
     if (props.users.length === 0) {
-        props.setUsers([
-            { id: 1, photoUrl: 'https://w7.pngwing.com/pngs/409/621/png-transparent-computer-icons-avatar-male-user-profile-others-logo-monochrome-silhouette.png', followed: false, fullName: "Igor'", status: "I'm a student", location: { city: "Stb", country: "RB" } },
-            { id: 2, photoUrl: 'https://w7.pngwing.com/pngs/409/621/png-transparent-computer-icons-avatar-male-user-profile-others-logo-monochrome-silhouette.png', followed: true, fullName: "Masha", status: "I'm an engineer", location: { city: "Minsk", country: "RB" } },
-            { id: 3, photoUrl: 'https://w7.pngwing.com/pngs/409/621/png-transparent-computer-icons-avatar-male-user-profile-others-logo-monochrome-silhouette.png', followed: true, fullName: "Ignat", status: "I'm a senior", location: { city: "Wroclav", country: "Poland" } },
-            { id: 4, photoUrl: 'https://w7.pngwing.com/pngs/409/621/png-transparent-computer-icons-avatar-male-user-profile-others-logo-monochrome-silhouette.png', followed: false, fullName: "Yra", status: "I'm a boss", location: { city: "Stolbcy", country: "RB" } },
-        ])
-
+        axios.get(' https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            debugger;
+            props.setUsers(response.data.items);
+        });
     }
+
+
+
+
 
 
     const onClickFollowHandler = () => {
@@ -29,7 +32,7 @@ export const Users = (props) => {
         props.users.map(u => <div key={u.id}>
             <span>
                 <div>
-                    <img src={u.photoUrl} className={s.userPhoto} />
+                    <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
                 </div>
                 <div>
                     {u.followed ? <button onClick={() => { props.unfollow(u.id) }}>Follow</button> : <button onClick={() => { props.follow(u.id) }}>Unfollow</button>}
@@ -38,7 +41,7 @@ export const Users = (props) => {
             <span>
                 <span>
                     <div>
-                        {u.fullName}
+                        {u.name}
                     </div>
                     <div>
                         {u.status}
@@ -46,10 +49,10 @@ export const Users = (props) => {
                 </span>
                 <span>
                     <div>
-                        {u.location.country}
+                        {/* {u.location.country} */}
                     </div>
                     <div>
-                        {u.location.city}
+                        {/* {u.location.city} */}
                     </div>
                 </span>
             </span>
