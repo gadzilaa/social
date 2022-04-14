@@ -11,8 +11,9 @@ const SET_USERS_TOTAL_COUNT = 'SET-USERS-TOTAL-COUNT'
 let initialState = {
     users: [],
     pageSize: 5,
-    totelUsersCount: 0,
-    currentPage: 2
+    totelUsersCount: 2,
+    currentPage: 2,
+    isFetching: true
 
 
 }

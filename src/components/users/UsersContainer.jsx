@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { followAC, setCurrentPageAC, setUsersAC, setUsersTotalCount, unfollowAC } from '../../Redux/users-reducer';
 import * as axios from 'axios'
 import { Users } from './Users';
+import preloader from '../../assets/images/loader.svg'
 
 
 class UsersContainer extends React.Component {
@@ -24,15 +25,19 @@ class UsersContainer extends React.Component {
   }
 
   render() {
-    return <Users
-      totelUsersCount={this.props.totelUsersCount}
-      pageSize={this.props.pageSize}
-      currentPage={this.props.currentPage}
-      onclickHandler={this.onclickHandler}
-      users={this.props.users}
-      unfollow={this.props.unfollow}
-      follow={this.props.follow}
-    />
+    return <>
+      {this.props.isFetching ? <img src={preloader}/> : null}
+    
+      <Users
+        totelUsersCount={this.props.totelUsersCount}
+        pageSize={this.props.pageSize}
+        currentPage={this.props.currentPage}
+        onclickHandler={this.onclickHandler}
+        users={this.props.users}
+        unfollow={this.props.unfollow}
+        follow={this.props.follow}
+      />
+    </>
   }
 }
 
@@ -41,7 +46,8 @@ let mapStateToProps = (state) => {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totelUsersCount: state.usersPage.totelUsersCount,
-    currentPage: state.usersPage.currentPage
+    currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching
 
   }
 }
